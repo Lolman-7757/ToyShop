@@ -1,13 +1,72 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Comme:wght@100;200;300;400;500;600;700;800&display=swap');
+body,#root{
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Comme',monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #327fa8; */
+}
+*{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+li{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+}
+#root{
+  flex-direction: column;
+  justify-content: space-between !important;
+}
+main{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+/* ADAPTIVE / RESPONSIVE CONTAINER */
+.b{
+
+  border: 1px solid black;
+}
+.container{
+  max-width: 1200px;
+  padding: 0px 15px;
+  margin: 0px auto;
+  height: 100%;
+}
+@media(min-width: 1201px){
+  .container{
+    width: 95%;
+  }
+}
+@media(max-width: 1200px){
+  .container{
+    width: 1000px;
+  }
+}
+@media(max-width: 1000px){
+  .container{
+    width: 767px;
+  }
+}
+@media(max-width: 768px){
+  .container{
+    width: 479px;
+  }
+}
+@media(max-width: 480px){
+  .container{
+    width: 90%;
+  }
+}
+
+main{
+  width: 100%;
 }

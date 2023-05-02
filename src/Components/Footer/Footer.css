@@ -1,0 +1,123 @@
+footer{
+    width: 100%;
+    margin-top: 50px;
+    background-color: #327fa8;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+footer .container{
+    height: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.footer-wrapper{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer_upper{
+    color: white;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+.footer_navs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer_navs-header{
+    border-bottom: 2px solid white;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.footer_navs li{
+    margin-top: 10px;
+}
+.footer_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2rem;
+}
+.footer_info p{
+    margin-top: 15px;
+}
+.footer_socials{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+.footer_socials li:hover{
+    color: white;
+    transform: scale(1.2);
+}
+.footer_socials li{
+    cursor: pointer;
+    transition: linear all .2s;
+    margin-left: 20px;
+}
+.footer_socials li:nth-child(1){
+    margin-left: 0 !important;
+}
+.footer_telegram{
+    font-size: 3rem;
+}
+
+.footer_bottom{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 100%;
+    border-top: 1px solid white;
+    padding-top: 30px;
+}
+.footer_payment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.footer_payment svg{
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: linear all .2s;
+}
+.footer_payment svg:hover{
+    transform: scale(1.2);
+    color: white;
+}
+
+@media (max-width: 1000px) {
+    .footer-wrapper{
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .footer_upper{
+        flex-wrap: wrap;
+    }
+    .footer_info{
+        order: 2;
+        flex-basis: 100%;
+        margin-top: 50px;
+    }
+    .footer_navs{
+        order: 1;
+    }
+}

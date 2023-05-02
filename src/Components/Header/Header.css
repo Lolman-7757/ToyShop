@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Comme:wght@100;200;300;400;500;600;700;800&display=swap');
+
+header {
+    font-family: monospace;
+    color: white;
+    height: 100px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #327fa8;
+    z-index: 50;
+}
+
+header a {
+    color: white;
+}
+
+header .container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header_logo {
+    font-size: 3.5rem;
+    flex-basis: 10%;
+}
+
+.header_nav {
+    flex-basis: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.header_nav li {
+    transition: linear .2s all;
+}
+
+.header_nav li:hover {
+    transform: scale(1.3);
+}
+
+.header_btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-basis: 30%;
+    font-size: 2rem;
+}
+
+.header_search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header_search input {
+    margin-right: 5px;
+    padding: 5px;
+    font-size: 1.1rem;
+}
+
+.header_btn-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header_cart {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-right: 20px;
+}
+
+.header_btn-block a {
+    transition: all .2s linear;
+}
+
+.header_btn-block a:hover {
+    transform: scale(1.3);
+}
+
+.header_btn-block a:nth-child(2) {
+    font-size: 2.5rem;
+}
+
+.header_cart span {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    /* top: 50%; */
+    /* bottom: 50%; */
+    /* right: 50%;s */
+    /* left: 50%; */
+    font-size: 0.7rem;
+    height: 22px;
+    width: 22px;
+    color: #327fa8;
+    /* padding: 1px; */
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    padding: -5px;
+    justify-content: center;
+    align-items: center;
+}
+.header_bar-btn{
+    z-index: 54 !important;
+    cursor: pointer;
+    display: none;
+    font-size: 3rem;
+    transition: linear .2s all;
+}
+.header_bar-btn:hover{
+    transform: scale(1.3);
+}
+
+.modal{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 51;
+    transition: .1s all linear;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.modal_opened{
+    animation-name: modal-opened;
+    animation-duration: .5s;
+    width: 100vw;
+    height: 100vh;
+}
+.modal_closed{
+    width: 0vw;
+    height: 0vh;
+}
+.modal .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 50%;
+    
+}
+@keyframes modal-opened {
+    from{ width: 0vw; height: 0vh; }
+    to{ width: 100vw; height: 100vh; }
+}
+.modal .container_closed{
+    display: none !important;
+}
+.modal .container_opened{
+    animation-name: container-opened;
+    animation-duration: .4s;
+}
+.modal .header_search{
+    flex-basis: auto;
+    margin-top: 20px;
+    font-size: 2rem;
+}
+.modal_navs{
+    margin-top: 20px;
+    font-size: 2rem;
+    text-align: center;
+}
+.modal_navs li{
+    margin-top: 10px;
+    transition: linear all .2s;
+}
+.modal_navs li:hover {
+    transform: scale(1.2);
+}
+@keyframes container-opened {
+    0%{display: none;}
+    50%{display: none;}
+    100%{display: flex;}
+}
+/* АДАПТИВ */
+@media(max-width: 1000px) {
+    .header_btns{
+        flex-basis: 70%;
+    }
+    .header_search{
+        flex-basis: 80%;
+        justify-content: center;
+    }
+    .header_search input{
+        flex-basis: 80%;
+    }
+    .header_nav{
+        display: none;
+    }
+}
+@media (max-width: 768px) {
+    .header_btns{
+        display: none;
+    }
+    .header_bar-btn{
+        display: flex;
+        font-size: 3rem;
+    }
+    header{
+        height: 80px;
+    }
+}

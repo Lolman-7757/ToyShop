@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+section{
+    width: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.header_navs-block{
+    margin-top: 100px;
+    background-color: #327fa8;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height: 100%;
+}
+.header_navs-block .container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height: 100%;
+}
+.header_navs{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+.header_navs a{
+    color: white;
+    transition: .2s all linear;
+}
+.header_navs li{
+    border: 2px solid white;
+    height: 100%;
+    flex-basis: 50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-top: none !important;
+    border-bottom: none !important;
+}
+.header_navs li:hover a{
+    transform: scale(1.2);
+}
+
+/* HOME */
+.home{
+    margin-top: 0px;
+    color: white;
+    width: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-image: url('https://toyshelf.store/static/store/images/poster.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.home .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.home_wrapper{
+    padding: 120px 0px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.626);
+}
+.home h1{
+    font-size: 4rem;
+}
+.home h2{
+    margin-top: 20px;
+    font-size: 2rem;
+    color: rgb(201, 201, 2) !important;
+}
+.home h3{
+    margin-top: 30px;
+}
+.home_advantages{
+    margin-top: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+.home_advantages li{
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s all linear;
+}
+.home_advantages li:hover{
+    border-bottom-color: white;
+    color: white !important;
+    transform: scale(1.2);
+}
+.home_advantages svg{
+    margin-right: 15px;
+}
+
+/* PRODUCTLIST */
+.productlist{
+    padding: 50px 0;
+    border-bottom: 2px solid black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.productlist .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.productlist_title{
+    font-size: 3rem;
+    color: black;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+}
+.products{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+
+@media (min-width: 1001px) {
+    .header_navs-block{
+        display: none;
+    }
+    .home{
+        margin-top: 100px;
+    }
+}
+@media (max-width: 1000px){
+    .home_advantages{
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 100px;
+    }
+    .home_wrapper{
+        padding-top: 50px;
+    }
+    .home_advantages li:nth-last-child(1){
+        margin-top: 50px;
+    }
+}
+@media (max-width: 780px){
+    .header_navs-block{
+        margin-top: 65px;
+    }
+    .home_advantages{
+        margin-top: 50px;
+    }
+    .home_advantages li{
+        margin-top: 50px;
+    }
+    .home h1{
+        font-size: 2.6rem;
+    }
+    .home h2{
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px){
+    .header_navs{
+        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 10px;
+    }
+    .header_navs li{
+        border: none;
+    }
+    .home_wrapper{
+        padding-bottom: 40px;
+    }
+    .home_advantages{
+        margin-top: 20px;
+        width: 80%;
+        font-size: 1.2rem;
+    }
+}
