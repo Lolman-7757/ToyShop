@@ -182,15 +182,15 @@ function Home() {
                 </div>
             </section>
             {
-                data.map((productlist) => {
+                data.map((productlist, listID) => {
                     return (
-                        <section className='productlist'>
+                        <section className='productlist' key={listID}>
                             <div className='container'>
                                 <a href={productlist.url} className='productlist_title'>{productlist.name}</a>
                                 <ul className='products'>
                                     {
                                         productlist.products.map((product) => {
-                                            return (<Card data={product} />)
+                                            return (<Card data={product} key={product.id} onclick={() => { console.log(product.id) }} />)
                                         })
                                     }
                                 </ul>
@@ -199,6 +199,18 @@ function Home() {
                     )
                 })
             }
+            <section className='subscribe'>
+                <div className='subscribe_wrapper'>
+                    <div className='container'>
+                        <h2 className='subscribe_title'>Специальные предложения!</h2>
+                        <h3 className='subscribe_descr'>Присоединяйтесь к нам, узнавайте первыми о скидках и новых поступлениях магазина</h3>
+                        <form>
+                            <input placeholder='Ваш e-mail адресс' />
+                            <button type='submit'>Подписаться</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
         </>
     )
 }
