@@ -7,6 +7,7 @@ import { SiGmail } from 'react-icons/si'
 import { Link } from 'react-router-dom'
 
 function Footer() {
+  const token = window.localStorage.getItem("token")
   return (
     <footer>
       <div className='container'>
@@ -31,8 +32,8 @@ function Footer() {
             </div>
             <ul className='footer_navs'>
               <li className='footer_navs-header'><Link to='/'>Магазин Игрушек</Link></li>
-              <li><Link to='/cart'>Корзина</Link></li>
-              <li><Link to='/profile'>Мой Профиль</Link></li>
+              <li><Link to={token? '/cart' : '/login'}>Корзина</Link></li>
+              <li><Link to={token? '/profile' : '/login'}>Мой Профиль</Link></li>
               <li><Link to='/contact'>Контакты</Link></li>
             </ul>
           </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 // Стили (css)
 import './Home.css'
 // Иконки
@@ -6,146 +6,25 @@ import { FaPlaneDeparture } from 'react-icons/fa'
 import { BsCalendar2Date } from 'react-icons/bs'
 import { BiMedal } from 'react-icons/bi'
 import Card from '../../Components/Card/Card'
+import https from '../../Assets/https'
 
 function Home() {
-    const data = [
-        {
-            name: 'Мальчикам',
-            url: '/boys',
-            products: [
-                {
-                    id: 1,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 2,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 3,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 4,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-            ]
-        },
-        {
-            name: 'Девочкам',
-            url: '/girls',
-            products: [
-                {
-                    id: 1,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 2,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 3,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 4,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-            ]
-        },
-        {
-            name: 'Малышам',
-            url: '/babies',
-            products: [
-                {
-                    id: 1,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 2,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 3,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 4,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-            ]
-        },
-        {
-            name: 'Взрослым',
-            url: '/adults',
-            products: [
-                {
-                    id: 1,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 2,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 3,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-                {
-                    id: 4,
-                    title: 'Игровой набор',
-                    img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-                    description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-                    price: 1980000
-                },
-            ]
+    const [products, setProducts] = useState([])
+    const [ admin, setAdmin ] = useState([])
+    useEffect(() => {
+        https.get('/categories')
+        .then(res => setProducts(res.data.data))
+        .catch(err => console.log(err))
+        if (window.localStorage?.getItem("someID") != null) {
+            https.get(`/users/${window.localStorage?.getItem("someID")}`)
+                .then(res => {
+                    if (res?.data?.data?.roles[0]?.name == "admin") { setAdmin(true); }
+                    else { setAdmin(false); }
+                })
+                .catch(err => alert(err))
         }
-    ]
+    }, [])
+
     return (
         <>
             <section className='header_navs-block'>
@@ -182,7 +61,7 @@ function Home() {
                 </div>
             </section>
             {
-                data.map((productlist, listID) => {
+                products.map((productlist, listID) => {
                     return (
                         <section className='productlist' key={listID}>
                             <div className='container'>
@@ -190,7 +69,7 @@ function Home() {
                                 <ul className='products'>
                                     {
                                         productlist.products.map((product) => {
-                                            return (<Card data={product} key={product.id} onclick={() => { console.log(product.id) }} />)
+                                            return (<Card isAdmin={admin} data={product} key={product.id}/>)
                                         })
                                     }
                                 </ul>
