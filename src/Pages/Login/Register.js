@@ -40,6 +40,7 @@ function Register() {
                 Success()
                 window.localStorage.setItem("token", res.data.token)
                 window.localStorage.setItem("someID", res.data.user.id)
+                window.location.reload();
             })
             .catch( err => {
                 Warn(err)
@@ -54,7 +55,7 @@ function Register() {
             <input placeholder='Имя пользователя' {...register("name", { required: true })}/>
             <input placeholder='E-mail' {...register("email", { required: true })}/>
             <input placeholder='Номер телефона' {...register("phone", { required: true })}/>
-            <input placeholder='Пароль' {...register("password", { required: true })}/>
+            <input placeholder='Пароль' type='password' {...register("password", { required: true })}/>
             <button type='submit'>Создать аккаунт</button>
         </form>
     )

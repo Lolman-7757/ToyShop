@@ -12,6 +12,7 @@ import { BsCart, BsPerson, BsFilterRight } from 'react-icons/bs'
 import { RxCross1 } from 'react-icons/rx'
 import { Link } from 'react-router-dom'
 import https from '../../Assets/https'
+import Card from '../Card/Card'
 
 function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,11 +21,11 @@ function Header() {
   };
   const handleOk = () => {
     setIsModalOpen(false);
-    
+
   };
   const handleCancel = () => {
     setIsModalOpen(false);
-    
+
   };
 
   const arr = [
@@ -38,30 +39,33 @@ function Header() {
       quantity: "2"
     },
   ]
-  
+
 
   const [modal, setModal] = useState(false)
   const [isAuthorized, setIsAuthorized] = useState(false)
   const token = window.localStorage.getItem("token")
   const [isAdmin, setIsAdmin] = useState(false)
-  const [ cartAmount, setCartAmount ] = useState([])
-  const [ number, setNumber ] = useState(0)
+  const [cartAmount, setCartAmount] = useState([])
+  const [number, setNumber] = useState(0)
+  const [products, setProducts] = useState([])
+  const [newProducts, setNewProducts] = useState([])
+  const [searchModal, setSearchModal] = useState(false)
 
   useEffect(() => {
-    if(window.localStorage?.getItem("someID") != null){
+    if (window.localStorage?.getItem("someID") != null) {
       https.get(`carts/${window.localStorage.getItem("someID")}`)
-      .then(res => {
-        res.data.data.products.map(item =>{
-          setCartAmount(cartAmount.push(Number(item.quantity)))
-        })
-        
-        setNumber(cartAmount.reduce((a,b) => a+b)/2)
-        // res.data.data.products.map(item =>{
+        .then(res => {
+          res.data.data.products.map(item => {
+            setCartAmount(cartAmount.push(Number(item.quantity)))
+          })
 
-        //   setCartAmount(cartAmount + item.quantity)
-        //   console.log(cartAmount)
-        // })
-      })
+          setNumber(cartAmount.reduce((a, b) => a + b) / 2)
+          // res.data.data.products.map(item =>{
+
+          //   setCartAmount(cartAmount + item.quantity)
+          //   console.log(cartAmount)
+          // })
+        })
       https.get(`/users/${window.localStorage?.getItem("someID")}`)
         .then(res => {
           if (res?.data?.data?.roles[0]?.name == "admin") { setIsAdmin(true); console.log(isAdmin) }
@@ -69,7 +73,7 @@ function Header() {
         })
         .catch(err => alert(err))
     }
-    
+
   }, [])
   return (
     <>
@@ -90,7 +94,17 @@ function Header() {
           </ul>
           <div className='header_btns'>
             <form className='header_search'>
-              <input placeholder='Поиск' />
+              <input placeholder='Поиск' onChange={(e) => {
+                if (e.target.value.length !== 0) {
+                  setSearchModal(true)
+                  https.post(`/search/products`, { search: e.target.value })
+                    .then(res => setNewProducts(res.data.data))
+                    .catch(err => alert("Упс...что-то пошло не так!"))
+                }else{
+                  setSearchModal(false)
+                }
+              }}
+              />
               <BiSearch />
             </form>
             <div className='header_btn-block'>
@@ -99,7 +113,7 @@ function Header() {
                 <span>{number}</span>
               </Link>
               <Link to={token ? '/profile' : '/login'}><IoPersonOutline /></Link>
-              {isAdmin? <button onClick={showModal} ><CiCirclePlus/></button> : <></>}
+              {isAdmin ? <button onClick={showModal} ><CiCirclePlus /></button> : <></>}
             </div>
           </div>
           <div className='header_bar-btn' onClick={() => { setModal(!modal) }}>
@@ -114,16 +128,42 @@ function Header() {
                 <span>{number}</span>
               </Link>
               <Link to={token ? '/profile' : '/login'} onClick={() => { setModal(!modal) }}><IoPersonOutline /></Link>
-              {isAdmin? <button onClick={showModal} ><CiCirclePlus/></button> : <></>}
+              {isAdmin ? <button onClick={showModal} ><CiCirclePlus /></button> : <></>}
             </div>
             <form className='header_search'>
-              <input placeholder='Поиск' />
+              <input placeholder='Поиск' onChange={(e) => {
+                if (e.target.value.length !== 0) {
+                  https.post(`/search/products`, { search: e.target.value })
+                    .then(res => setProducts(res.data.data))
+                    .catch(err => alert("Упс...что-то пошло не так!"))
+                }
+              }
+              }
+              />
               <BiSearch />
             </form>
             <ul className='modal_navs'>
               <li><Link onClick={() => { setModal(!modal) }} to='/contact'>Контакты</Link></li>
               <li><Link onClick={() => { setModal(!modal) }} to='/login'>Регистрация</Link></li>
             </ul>
+            <div className='header_cards'>
+
+              {
+                products?.map((item, itemID) => {
+                  return <Card data={item} key={itemID} />
+                })
+              }
+            </div>
+          </div>
+        </div>
+        <div className={ searchModal ? 'search_modal' : 'search_modal search_modal-none' }>
+              <RxCross1 onClick={() => setSearchModal(false)}/>
+          <div className='search_content'>
+            {
+              newProducts?.map((item, itemID) => {
+                return <Card data={item} key={itemID} />
+              })
+            }
           </div>
         </div>
       </header>

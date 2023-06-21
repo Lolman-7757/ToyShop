@@ -33,7 +33,9 @@ function Profile() {
                         <Link to='/login'>
                             <button onClick={() => {
                                 window.localStorage.removeItem("token");
-                                window.localStorage.removeItem("someID")
+                                window.localStorage.removeItem("someID");
+                                window.localStorage.removeItem("admin");
+                                window.location.reload();
                             }}>
                                 Выйти из Аккаунта
                             </button>

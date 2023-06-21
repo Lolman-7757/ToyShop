@@ -15,14 +15,6 @@ function Home() {
         https.get('/categories')
         .then(res => setProducts(res.data.data))
         .catch(err => console.log(err))
-        if (window.localStorage?.getItem("someID") != null) {
-            https.get(`/users/${window.localStorage?.getItem("someID")}`)
-                .then(res => {
-                    if (res?.data?.data?.roles[0]?.name == "admin") { setAdmin(true); }
-                    else { setAdmin(false); }
-                })
-                .catch(err => alert(err))
-        }
     }, [])
 
     return (
@@ -69,7 +61,7 @@ function Home() {
                                 <ul className='products'>
                                     {
                                         productlist.products.map((product) => {
-                                            return (<Card isAdmin={admin} data={product} key={product.id}/>)
+                                            return (<Card data={product} key={product.id}/>)
                                         })
                                     }
                                 </ul>

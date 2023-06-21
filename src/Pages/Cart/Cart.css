@@ -96,6 +96,9 @@
 .cart_products-wrapper ul li:nth-child(1) {
     flex-basis: 10%;
 }
+.cart_product-items_img img{
+    width: 100%;
+}
 
 .cart_products-wrapper ul li:nth-child(2) {
     flex-basis: 30%;

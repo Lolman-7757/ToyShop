@@ -43,6 +43,9 @@
     align-items: center;
     justify-content: space-around;
 }
+.categories_sort h1{
+    font-size: 3rem;
+}
 .categories_item{
     flex-basis: 25%;
 }
@@ -67,6 +70,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    width: 90%;
 }
 .categories_products .card{
     margin-left: 20px;

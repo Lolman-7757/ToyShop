@@ -10,9 +10,10 @@ function Cart() {
     const [number, setNumber] = useState(0)
     const [priceData, setPriceData] = useState([])
     const [price, setPrice] = useState(0)
-    const [ cartModal, setCartModal ] = useState(false)
+    const [cartModal, setCartModal] = useState(false)
     const [data, setData] = useState({})
-    const [ newData, setNewData ] = useState([])
+    const [newData, setNewData] = useState([])
+    const [ sendingData, setSendingData ] = useState([])
     useEffect(() => {
         https.get(`/carts/${window.localStorage.getItem("someID")}`)
             .then(res => {
@@ -25,7 +26,7 @@ function Cart() {
                     setPriceData(priceData.push(Number(item.price - (item.price * item.discount) / 100)))
                 })
                 setPrice(priceData.reduce((a, b) => a + b) / 2)
-                res.data.data.products.map(item =>{
+                res.data.data.products.map(item => {
                     setNewData(newData.push({
                         product_id: item.id,
                         amount: item.amount,
@@ -36,8 +37,18 @@ function Cart() {
             .catch(err => console.log(err))
     }, [])
 
-    const sendOrder = ( ) =>{
-        console.log(newData)
+    const sendOrder = () => {
+        data.products.map(item =>{
+            setSendingData(sendingData.push({product_id:item.id,amount: item.quantity,status:false}))
+        })
+        https.post('/orders', {orders: sendingData})
+        .then(res => {
+            alert('Ваш заказ был успешно отправлен оператору. Ожидайте звонка!')
+            https.post('/carts/clear')
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+        })
+        .catch(err => alert('Упс...что-то пошло не так'))
     }
 
     if (window.localStorage.getItem("token")) {
@@ -67,7 +78,7 @@ function Cart() {
                             data.products?.map((product, productID) => {
                                 return (
                                     <ul key={productID} className='cart_products-items'>
-                                        <li>{product.paths}</li>
+                                        <li className='cart_product-items_img'><img src={product.paths} alt='cart_img'/></li>
                                         <li>{product.name}</li>
                                         <li>{(product.price - (product.price * product.discount)).toLocaleString()}</li>
                                         <li>{product.quantity}</li>
@@ -78,7 +89,7 @@ function Cart() {
                         }
                     </div>
                 </div>
-                <div className={`cart_modal ${cartModal? "cart_modal-active" : "cart_modal-none"}`}>
+                <div className={`cart_modal ${cartModal ? "cart_modal-active" : "cart_modal-none"}`}>
                     <div className='cart_payment'>
                         <h1> Ваши данные для оплаты </h1>
                         <form>
@@ -137,5 +148,4 @@ function Cart() {
         )
     } else (<Authorization />)
 }
-
 export default Cart

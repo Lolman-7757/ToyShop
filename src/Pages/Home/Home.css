@@ -136,9 +136,12 @@ section{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     flex-wrap: wrap;
+}
+.products .card{
+    margin-left: 20px;
 }
 
 /* SUBSCRIBE */

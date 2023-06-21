@@ -201,6 +201,10 @@ header .container {
     justify-content: center;
     align-items: center;
 }
+.header_cards{
+    height: 520px;
+    overflow-y: scroll;
+}
 .header_btn-block button:hover{
     transform: scale(1.1);
 }
@@ -254,6 +258,9 @@ header .container {
     .header_nav{
         display: none;
     }
+    .search_modal{
+        margin-top: 60px;
+    }
 }
 @media (max-width: 768px) {
     .header_btns{
@@ -266,4 +273,49 @@ header .container {
     header{
         height: 80px;
     }
+    .search_modal{
+        display: none;
+    }
+}
+.search_modal{
+    position: absolute;
+    top: 100px;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.82);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 50px;
+}
+.search_modal-none{
+    display: none !important;
+}
+.search_content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 550px;
+    overflow-x: scroll;
+    margin-left: 50px;
+}
+.search_content .card{
+    margin-left: 50px;
+}
+.search_modal svg{
+    margin-left: 90%;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    justify-self: flex-end;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+}
+.search_modal button svg{
+    font-size: 1.4rem;
+    margin: 0 !important;
 }

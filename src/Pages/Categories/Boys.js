@@ -2,6 +2,9 @@ import React from 'react'
 import './Categories.css'
 import { Button, Input, Select, Space } from 'antd';
 import Card from '../../Components/Card/Card';
+import { useEffect } from 'react';
+import https from '../../Assets/https';
+import { useState } from 'react';
 const { Search } = Input;
 const price = [
     {
@@ -13,63 +16,27 @@ const price = [
         label: 'По убыванию',
     },
 ];
-const name = [
-    {
-        value: 'atoz',
-        label: 'От А до Я',
-    },
-    {
-        value: 'ztoa',
-        label: 'От Я до А',
-    },
-];
-const date = [
-    {
-        value: 'old',
-        label: 'Сначало Старые',
-    },
-    {
-        value: 'new',
-        label: 'Сначало Новые',
-    },
-];
 
-const productlist = {
-    name: 'Мальчикам',
-    url: '/boys',
-    products: [
-        {
-            id: 1,
-            title: 'Игровой набор',
-            img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-            description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-            price: 1980000
-        },
-        {
-            id: 2,
-            title: 'Игровой набор',
-            img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-            description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-            price: 1980000
-        },
-        {
-            id: 3,
-            title: 'Игровой набор',
-            img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-            description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-            price: 1980000
-        },
-        {
-            id: 4,
-            title: 'Игровой набор',
-            img: 'https://toyshelf.store/media/pictures/igrovoj-nabor-lol-surprise-fashion-show-mega-podium-80-syurprizov-box.jpg',
-            description: 'В КОМПЛЕКТ ВХОДЯТ 12 ЭКСКЛЮЗИВНЫХ КУКОЛ: 2 Куклы OMG Fashion с трансформир…',
-            price: 1980000
-        },
-    ]
-}
+
 
 function Boys() {
+    const [category, setCategory] = useState({})
+    const [categoryArr, setCategoryArr] = useState([])
+    const changeType = (e) => {
+        if (e === "increment") {
+            setCategoryArr(categoryArr.sort((a, b) => a - b))
+        } else {
+            setCategoryArr(categoryArr.sort((a, b) => b - a))
+        }
+    }
+    useEffect(() => {
+        https.get('/categories/3')
+            .then(res => {
+                setCategory(res.data)
+                setCategoryArr(res.data.products.sort((a, b) => a - b))
+            })
+            .catch(err => console.log(err))
+    }, [])
     return (
         <section className='categories'>
             <div className='promo'>
@@ -78,25 +45,14 @@ function Boys() {
             </div>
             <div className='container'>
                 <div className='categories_sort'>
-                    <div className='categories_item'>
-                        <p>По цене</p>
-                        <Select defaultValue="increment" options={price} />
-                    </div>
-                    <div className='categories_item'>
-                        <p>По дате</p>
-                        <Select defaultValue="new" options={date} />
-                    </div>
-                    <div className='categories_item'>
-                        <p>По названию</p>
-                        <Select defaultValue="atoz" options={name} />
-                    </div>
+                    <h1>{category.name}</h1>
                 </div>
             </div>
             <div className='categories_productlist'>
                 <ul className='categories_products'>
                     {
-                        productlist.products.map((product) => {
-                            return (<Card data={product} key={product.id} onclick={() => { console.log(product.id) }} />)
+                        categoryArr?.map(product => {
+                            return <Card data={product} key={product.id} />
                         })
                     }
                 </ul>

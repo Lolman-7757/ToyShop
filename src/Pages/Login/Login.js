@@ -40,7 +40,9 @@ function Login() {
                     .then(res => {
                         Success()
                         window.localStorage.setItem('token', res.data.token)
+                        window.localStorage.setItem('admin', res.data.user.roles[0].name)
                         window.localStorage.setItem('someID', res.data.user.id)
+                        window.location.reload();
                     })
                     .catch(err => {
                         Warn(err.response.status)
@@ -53,7 +55,7 @@ function Login() {
         <form className='login_block' onSubmit={handleSubmit(onSubmit)}>
             <h1>Войти в аккаунт</h1>
             <input placeholder='Email пользователя'  {...register("email", { required: true })}/>
-            <input placeholder='Пароль'  {...register("password", { required: true })}/>
+            <input placeholder='Пароль' type='password'  {...register("password", { required: true })}/>
             <button type='submit'>Войти</button>
         </form>
     )

@@ -26,19 +26,19 @@ function AddProduct() {
     const [selectedFile, setSelectedFile] = useState()
     const categoriesList = [
         {
-            value: 6,
-            label: 'Детям',
+            value: 2,
+            label: 'Малышам',
         },
         {
-            value: 9,
+            value: 1,
             label: 'Взрослым',
         },
         {
-            value: 8,
+            value: 4,
             label: 'Девочкам',
         },
         {
-            value: 7,
+            value: 3,
             label: 'Мальчикам',
         },
     ];

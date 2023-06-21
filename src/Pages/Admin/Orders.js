@@ -41,32 +41,44 @@ function Orders() {
                     <h2 className='orders_subtitle'>Здесь вы можете посмотреть ваши заказы</h2>
                     <ul className='orders_wrapper'>
                         {
-                            data.map((item, itemID) => (
-                                <li className='orders_item' key={itemID}>
-                                    <div className='orders_item-img'>
-                                        <Switch
-                                        size='large'
-                                            defaultChecked={item.status}
-                                            onChange={(e) => checkHandle(e, item.product.id, item.amount)}
-                                            checkedChildren="Доставлено"
-                                            unCheckedChildren="Не доставлено"
-                                        />
-                                        <img alt='IMG' src={item.product.img} />
-                                    </div>
-                                    <div className='orders_product'>
-                                        <h3>{item.product.name}</h3>
-                                        <p>Цена за шт: {item.product.price} сум</p>
-                                        <p>Количество: {item.amount} шт</p>
-                                        <p>Общая сумма: {item.product.price * item.amount} сум</p>
-                                    </div>
-                                    <div className='orders_user'>
-                                        <h3>Информация о Заказчике</h3>
-                                        <p>Имя: {item.user.name}</p>
-                                        <p>Номер телефона: {item.user.phone}</p>
-                                        <p>Адресс почты: {item.user.email}</p>
-                                    </div>
-                                </li>
-                            ))
+                            data.map((person, personID) => {
+                                return (
+                                    <li className='orders_user' key={personID}>
+                                        <ul className='orders_user-info'>
+                                            <li>Имя:{person.name}</li>
+                                            <li>Номер:{person.phone}</li>
+                                            <li>Email:{person.email}</li>
+                                        </ul>
+                                        {
+
+                                            person?.orders?.map((item, itemID) => {
+                                                if (item.product) {
+                                                    return (
+                                                        <li className='orders_item' key={itemID}>
+                                                            <div className='orders_item-img'>
+                                                                <Switch
+                                                                    size='large'
+                                                                    defaultChecked={item.status}
+                                                                    onChange={(e) => checkHandle(e, item?.product?.id, item?.amount)}
+                                                                    checkedChildren="Доставлено"
+                                                                    unCheckedChildren="Не доставлено"
+                                                                />
+                                                                <img alt='IMG' src={item?.product.paths} />
+                                                            </div>
+                                                            <div className='orders_product'>
+                                                                <h3>{item?.product.name}</h3>
+                                                                <p>Цена за шт: {item?.product.price} сум</p>
+                                                                <p>Количество: {item.amount} шт</p>
+                                                                <p>Общая сумма: {item?.product.price * item.amount} сум</p>
+                                                            </div>
+                                                        </li>
+                                                    )
+                                                }
+                                            })
+                                        }
+                                    </li>
+                                )
+                            })
                         }
                     </ul>
                 </div>
